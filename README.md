@@ -1,3 +1,5 @@
+# This project moved to https://github.com/nkaz001/hftbacktest/tree/master/collector
+
 # Binance feed collector
 ## Requirements
 Python3: run by `python3` command.  
