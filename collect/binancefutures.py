@@ -12,13 +12,14 @@ from yarl import URL
 class BinanceFutures:
     def __init__(self, queue, symbols, timeout=7):
         self.symbols = symbols
-        self.client = aiohttp.ClientSession(headers={ 'Content-Type': 'application/json' })
+        self.client = None  # Will be initialized in connect()
         self.closed = False
         self.pending_messages = {}
         self.prev_u = {}
         self.timeout = timeout
         self.keep_alive = None
         self.queue = queue
+        self.retries = 0  # Add retries counter initialization
 
     async def __on_message(self, raw_message):
         timestamp = time.time()
@@ -156,6 +157,10 @@ class BinanceFutures:
 
     async def connect(self):
         try:
+        # Initialize client session if not already done
+            if self.client is None:
+                self.client = aiohttp.ClientSession(headers={'Content-Type': 'application/json'})
+
             stream = '/'.join(['%s@depth@0ms/%s@trade/%s@markPrice@1s/%s@bookTicker' % (symbol, symbol, symbol, symbol)
                                for symbol in self.symbols])
             url = 'wss://fstream.binance.com/stream?streams=%s' % stream
