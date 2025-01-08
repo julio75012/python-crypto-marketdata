@@ -1,8 +1,6 @@
 # This project is inspired by https://github.com/nkaz001/collect-binancefutures (and the project is moved there https://github.com/nkaz001/hftbacktest/tree/master/collector)
 
-#This is a spinoff in order to have a simple subscriber in python
-
-#I might plan to extenmd
+This is a spinoff in order to have a simple subscriber in python
 
 # Binance feed collector
 ## Requirements
