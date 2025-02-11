@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]; then
     echo "collect.sh EXCHANGE SYMBOLS OUTPUT_PATH"
-    echo "example: collect.sh binancefutures btcusdt,ethusdt /mnt/data"
+    echo "example: collect.sh binancefutures btcusdt,ethusdt ./data"
     exit 1
 fi
 
